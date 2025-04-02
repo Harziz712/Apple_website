@@ -5,38 +5,39 @@
 
 :root {
   --radius: 0.625rem;
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.13 0.028 261.692);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.13 0.028 261.692);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.13 0.028 261.692);
-  --primary: oklch(0.21 0.034 264.665);
-  --primary-foreground: oklch(0.985 0.002 247.839);
-  --secondary: oklch(0.967 0.003 264.542);
-  --secondary-foreground: oklch(0.21 0.034 264.665);
-  --muted: oklch(0.967 0.003 264.542);
-  --muted-foreground: oklch(0.551 0.027 264.364);
-  --accent: oklch(0.967 0.003 264.542);
-  --accent-foreground: oklch(0.21 0.034 264.665);
-  --destructive: oklch(0.577 0.245 27.325);
-  --border: oklch(0.928 0.006 264.531);
-  --input: oklch(0.928 0.006 264.531);
-  --ring: oklch(0.707 0.022 261.325);
-  --chart-1: oklch(0.646 0.222 41.116);
-  --chart-2: oklch(0.6 0.118 184.704);
-  --chart-3: oklch(0.398 0.07 227.392);
-  --chart-4: oklch(0.828 0.189 84.429);
-  --chart-5: oklch(0.769 0.188 70.08);
-  --sidebar: oklch(0.985 0.002 247.839);
-  --sidebar-foreground: oklch(0.13 0.028 261.692);
-  --sidebar-primary: oklch(0.21 0.034 264.665);
-  --sidebar-primary-foreground: oklch(0.985 0.002 247.839);
-  --sidebar-accent: oklch(0.967 0.003 264.542);
-  --sidebar-accent-foreground: oklch(0.21 0.034 264.665);
-  --sidebar-border: oklch(0.928 0.006 264.531);
-  --sidebar-ring: oklch(0.707 0.022 261.325);
+  --background: #101010;
+  --foreground: #86868b;
+  --card: #101010;
+  --card-foreground: #86868b;
+  --popover: #101010;
+  --popover-foreground: #86868b;
+  --primary: #2997FF;
+  --primary-foreground: #94928d;
+  --secondary: #afafaf;
+  --secondary-foreground: #2997FF;
+  --muted: #afafaf;
+  --muted-foreground: #42424570;
+  --accent: #afafaf;
+  --accent-foreground: #2997FF;
+  --destructive: #94928d;
+  --border: #afafaf;
+  --input: #afafaf;
+  --ring: #42424570;
+  --chart-1: #2997FF;
+  --chart-2: #86868b;
+  --chart-3: #94928d;
+  --chart-4: #afafaf;
+  --chart-5: #42424570;
+  --sidebar: #2997FF;
+  --sidebar-foreground: #86868b;
+  --sidebar-primary: #2997FF;
+  --sidebar-primary-foreground: #94928d;
+  --sidebar-accent: #afafaf;
+  --sidebar-accent-foreground: #2997FF;
+  --sidebar-border: #afafaf;
+  --sidebar-ring: #42424570;
 }
+
 
 .dark {
   --background: oklch(0.13 0.028 261.692);
@@ -119,14 +120,6 @@
   }
 
 }
-:root {
-  --blue: #2997FF;
-  --gray: #86868b;
-  --gray-100: #94928d;
-  --gray-200: #afafaf;
-  --gray-300: #42424570;
-  --zinc: #101010;
-}
 
 
 * {
@@ -157,7 +150,7 @@ canvas {
 }
 
 @layer utilities {
-  .flex-center {
+  .flex justify-center {
     @apply flex items-center justify-center
   }
 
@@ -166,15 +159,15 @@ canvas {
   }
 
   .btn {
-    @apply px-5 py-2 rounded-3xl bg-blue my-5 hover:bg-transparent border border-transparent hover:border hover:text-blue hover:border-blue
+    @apply px-5 py-2 rounded-3xl bg-primary my-5 hover:bg-transparent border border-transparent hover:border hover:text-primary hover:border-primary
   }
 
   .color-container {
-    @apply flex items-center justify-center px-4 py-4 rounded-full bg-gray-300 backdrop-blur
+    @apply flex items-center justify-center px-4 py-4 rounded-full bg-muted-foreground backdrop-blur
   }
 
   .size-btn-container {
-    @apply flex items-center justify-center p-1 rounded-full bg-gray-300 backdrop-blur ml-3 gap-1
+    @apply flex items-center justify-center p-1 rounded-full bg-muted-foreground backdrop-blur ml-3 gap-1
   }
 
   .size-btn {
@@ -186,15 +179,15 @@ canvas {
   }
 
   .section-heading {
-    @apply text-gray lg:text-6xl md:text-5xl text-3xl lg:mb-0 mb-5 font-medium opacity-0 translate-y-20
+    @apply text-foreground lg:text-6xl md:text-5xl text-3xl lg:mb-0 mb-5 font-medium opacity-0 translate-y-20
   }
 
   .feature-text {
-    @apply text-gray max-w-md text-lg md:text-xl font-semibold opacity-0 translate-y-[100px]
+    @apply text-foreground max-w-md text-lg md:text-xl font-semibold opacity-0 translate-y-[100px]
   }
 
   .feature-text-container {
-    @apply w-full flex-center flex-col md:flex-row mt-10 md:mt-16 gap-5
+    @apply w-full flex justify-center flex-col md:flex-row mt-10 md:mt-16 gap-5
   }
 
   .feature-video {
@@ -206,15 +199,15 @@ canvas {
   }
 
   .link {
-    @apply text-blue hover:underline cursor-pointer flex items-center text-xl opacity-0 translate-y-20
+    @apply text-primary hover:underline cursor-pointer flex items-center text-xl opacity-0 translate-y-20
   }
 
   .control-btn {
-    @apply ml-4 p-4 rounded-full bg-gray-300 backdrop-blur flex-center
+    @apply ml-4 p-4 rounded-full bg-muted-foreground backdrop-blur flex justify-center
   }
 
   .hero-title {
-    @apply text-center font-semibold text-3xl text-gray-100 opacity-0 max-md:mb-10
+    @apply text-center font-semibold text-3xl text-primary-foreground opacity-0 max-md:mb-10
   }
 
   .hiw-title {
@@ -222,7 +215,7 @@ canvas {
   }
 
   .hiw-subtitle {
-    @apply text-gray font-semibold text-xl md:text-2xl py-10 text-center
+    @apply text-foreground font-semibold text-xl md:text-2xl py-10 text-center
   }
 
   .hiw-video {
@@ -234,7 +227,7 @@ canvas {
   }
 
   .hiw-text {
-    @apply text-gray text-xl font-normal md:font-semibold
+    @apply text-foreground text-xl font-normal md:font-semibold
   }
 
   .hiw-bigtext {
@@ -249,3 +242,11 @@ canvas {
     @apply opacity-0 translate-y-[100px]
   }
 }
+
+/* --blue: #2997FF; primary
+--gray: #86868b;    foreground
+--gray-100: #94928d; primary-foreground
+--gray-200: #afafaf; secondary
+--gray-300: #42424570; muted-foreground
+--zinc: #101010; background 
+ */
