@@ -187,7 +187,7 @@ canvas {
   }
 
   .feature-text-container {
-    @apply w-full flex-center flex-col md:flex-row mt-10 md:mt-16 gap-5
+    @apply w-full flex justify-center items-center flex-col md:flex-row mt-10 md:mt-16 gap-5
   }
 
   .feature-video {
@@ -203,7 +203,7 @@ canvas {
   }
 
   .control-btn {
-    @apply ml-4 p-4 rounded-full bg-muted-foreground backdrop-blur flex-center
+    @apply ml-4 p-4 rounded-full bg-muted-foreground backdrop-blur flex justify-center items-center 
   }
 
   .hero-title {
@@ -242,6 +242,7 @@ canvas {
     @apply opacity-0 translate-y-[100px]
   }
 }
+
 
 /* --blue: #2997FF; primary
 --gray: #86868b;    foreground
