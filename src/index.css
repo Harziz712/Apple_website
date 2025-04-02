@@ -118,19 +118,20 @@
   body {
     @apply bg-background text-foreground;
   }
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
 
 }
 
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+
 
 body {
   color: white;
-  width: 100dvw;
+  width: 100vw;
   overflow-x: hidden;
   height: 100%;
   background: #000;
@@ -142,7 +143,7 @@ canvas {
   touch-action: none;
 }
 
-.scrim-max-width {
+.screen-max-width {
   margin-inline-start: auto;
   margin-inline-end: auto;
   position: relative;
