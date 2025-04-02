@@ -118,20 +118,19 @@
   body {
     @apply bg-background text-foreground;
   }
+
   * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
   }
-
 }
-
 
 
 
 body {
   color: white;
-  width: 100vw;
+  width: 100dvw;
   overflow-x: hidden;
   height: 100%;
   background: #000;
@@ -151,7 +150,7 @@ canvas {
 }
 
 @layer utilities {
-  .flex justify-center {
+  .flex-center {
     @apply flex items-center justify-center
   }
 
@@ -188,7 +187,7 @@ canvas {
   }
 
   .feature-text-container {
-    @apply w-full flex justify-center flex-col md:flex-row mt-10 md:mt-16 gap-5
+    @apply w-full flex-center flex-col md:flex-row mt-10 md:mt-16 gap-5
   }
 
   .feature-video {
@@ -204,7 +203,7 @@ canvas {
   }
 
   .control-btn {
-    @apply ml-4 p-4 rounded-full bg-muted-foreground backdrop-blur flex justify-center
+    @apply ml-4 p-4 rounded-full bg-muted-foreground backdrop-blur flex-center
   }
 
   .hero-title {
