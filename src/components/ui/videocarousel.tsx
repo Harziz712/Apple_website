@@ -38,7 +38,7 @@ const VideoCarousel = () => {
     }
     , [isEnd, videoId])
 
-    const [loadedData, setLoadedData] = useState([])
+    const [loadedData, setLoadedData] = useState<HTMLVideoElement[]>([])
 
     useEffect(()=> {
         if(loadedData.length > 3){
@@ -52,19 +52,44 @@ const VideoCarousel = () => {
 
     },[startPlay, videoId,isPlaying, loadedData])
 
+    const handleLoadedMetaData  = (i: number, e: HTMLVideoElement) => setLoadedData((pre) => [...pre, e])
+
     useEffect (()=>{
-        const currentProgress = 0;
+        let currentProgress = 0;
         let span = videoSpanRef.current;
 
         if(span[videoId]) {
             let anim = gsap.to(span[videoId] ,{
                 onUpdate: ()=>{
+                    const progress = Math.ceil(anim.progress() * 100);
 
+                    if (progress != currentProgress){
+                        currentProgress = progress;
+                        gsap.to(videoDivRef.current[videoId], {
+                            width: window.innerWidth < 760 ? "10vw" :window.innerWidth < 1200 ? "10vw" : "4vw",
+                    })
+
+                        gsap.to(span[videoId], {
+                            width: `${currentProgress}%`,
+                            backgroundColor: "white",
+                            duration: 0.5
+                        })
+                    }
+             
                 },
                 onComplete: ()=>{
+                    if(isPlaying){
+                        gsap.to(videoDivRef.current[videoId], {
+                            width: "12px"
+                        })
+                        gsap.to(span[videoId], {
+                    backgroundColor: "#afafa",
+                })
+            }
+                    
 
                 }
-            })
+            });
         }
     },[startPlay, videoId])
 
@@ -126,6 +151,7 @@ onPlay = {() => {
     }))
 }}
 
+onLoadedMetadata={(e) => handleLoadedMetaData(i, e.currentTarget)}
     > 
         <source src={list.video} type="video/mp4"/>
     </video>
