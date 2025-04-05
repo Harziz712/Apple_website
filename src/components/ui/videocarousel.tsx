@@ -21,6 +21,11 @@ const VideoCarousel = () => {
  
     const {isEnd, startPlay, videoId, isLastVideo, isPlaying} = video;
     useGSAP(() => { 
+        gsap.to("#slider", {
+            transform: `translateX(${-100 * videoId}%)`,
+            duration:2,
+            ease: "power3.inOut",
+        })
         gsap.to("#video", {
             scrollTrigger:{
                 trigger: "#video",
@@ -72,7 +77,6 @@ const VideoCarousel = () => {
                         gsap.to(span[videoId], {
                             width: `${currentProgress}%`,
                             backgroundColor: "white",
-                            duration: 0.5
                         })
                     }
              
@@ -86,12 +90,25 @@ const VideoCarousel = () => {
                     backgroundColor: "#afafa",
                 })
             }
-                    
-
                 }
             });
+            if(videoId === 0){
+                anim.restart()
+            }
+            const animUpdate = ()=> {
+               anim.progress(videoRef.current[videoId]?.currentTime || 0 / 
+                hightlightsSlides[videoId].videoDuration
+               ) 
+            }
+
+            if (isPlaying){
+                gsap.ticker.add(animUpdate) 
+            }
+            else{
+                gsap.ticker.remove(animUpdate)
+            }
         }
-    },[startPlay, videoId])
+    },[videoId,startPlay])
 
     const handleProcess = (type: string, i: number) => {
         switch (type){
@@ -121,6 +138,12 @@ const VideoCarousel = () => {
                 !pre.isPlaying
             }))
             break;
+            case "pause":
+                setVideo((pre) => ({
+                    ...pre, isPlaying: 
+                    !pre.isPlaying
+                }))
+                break;
             default:
                 return video
         }
@@ -145,7 +168,13 @@ const VideoCarousel = () => {
             videoRef.current[i] = el;
         }
     }} 
-onPlay = {() => {
+    onEnded={() => 
+    i !== 3 ? 
+    handleProcess("video-end", i) 
+    : handleProcess("video-last", i)
+}
+
+    onPlay = {() => {
     setVideo((prexVideo) => ({
         ...prexVideo, isPlaying: true
     }))
