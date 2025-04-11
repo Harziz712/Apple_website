@@ -4,14 +4,13 @@ import ModelView from "./ui/modelview"
 import { useRef, useState } from "react"
 import * as THREE from "three"
 import { yellowImg } from "../utils"
-import { Canvas } from "@react-three/fiber"
-import View from "@react-three/fiber"
+import { Canvas, View} from "@react-three/fiber"
 import { models, sizes } from "../constants"
 
 
 
 const Model = () => {
-    const [size, setSize] = useState<String>('small');
+    const [size, setSize] = useState<string>('small');
     const[model, setModel] = useState({
         title:'iphone 15 Pro in Natural Titanium',
         color:["#8F8A81", "#FFE7B9", "#6F6C64", "#C7C2B5"],
@@ -76,7 +75,7 @@ const Model = () => {
                         }}
                         
                         eventSource={document.getElementById("root") || undefined}>
-                        <View.Port/>
+                        <View/>
                     </Canvas>
                 </div>
                 <div className="mx-auto w-full"><p className="text-sm font-light text-center mb-5" >{model.title}</p>
