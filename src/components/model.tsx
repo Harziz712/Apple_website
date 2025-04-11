@@ -4,7 +4,8 @@ import ModelView from "./ui/modelview"
 import { useRef, useState } from "react"
 import * as THREE from "three"
 import { yellowImg } from "../utils"
-import { Canvas, View} from "@react-three/fiber"
+import { Canvas} from "@react-three/fiber"
+import { View} from "@react-three/drei"
 import { models, sizes } from "../constants"
 
 
@@ -75,7 +76,7 @@ const Model = () => {
                         }}
                         
                         eventSource={document.getElementById("root") || undefined}>
-                        <View/>
+                        <View.Port/>
                     </Canvas>
                 </div>
                 <div className="mx-auto w-full"><p className="text-sm font-light text-center mb-5" >{model.title}</p>

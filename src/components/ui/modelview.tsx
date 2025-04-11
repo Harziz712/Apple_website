@@ -1,5 +1,5 @@
 import * as THREE from "three"
-
+import { PerspectiveCamera, View } from "@react-three/drei";
 
  type ModelViewProps = {
   index: number;
@@ -14,6 +14,7 @@ import * as THREE from "three"
   };
   size: string;
 };
+
 const ModelView = ({
   index,
   groupRef,
@@ -24,15 +25,21 @@ const ModelView = ({
   size,
 }: ModelViewProps) => {
   return (
-    <div
-      data-index={index}
-      data-gsap-type={gsapType}
-      data-size={size}
-      ref={controlRef}
-      style={{ color: item.color[0] }}
+    <View
+      index={index}
+      id={gsapType}
+      // data-size={size}
+      // ref={controlRef}
+      // style={{ color: item.color[0] }}
+      className={`border border-red-500 w-full h-full ${index === 2} ? 'right-[-100%] : ''`}
     >
-      {item.title}
-    </div>
+      {/* Ambient Light */}
+      <ambientLight intensity={0.3}/>
+
+      {/* Camera */}
+      <PerspectiveCamera makeDefault position={[0 , 0, 4]}/>
+
+    </View>
   );
 };
 export default ModelView
