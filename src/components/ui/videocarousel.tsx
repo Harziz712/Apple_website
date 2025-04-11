@@ -88,6 +88,7 @@ const VideoCarousel = () => {
                         })
                         gsap.to(span[videoId], {
                     backgroundColor: "#afafa",
+                    // duration:3
                 })
             }
                 }
@@ -163,6 +164,9 @@ const VideoCarousel = () => {
     playsInline = {true}
     preload="auto"
     muted
+    className={`${
+        list.id === 2 && "translate-44"
+    } pointer-events-none`}
     ref= {(el) => {
         if (el) {
             videoRef.current[i] = el;
