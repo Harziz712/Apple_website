@@ -1,5 +1,6 @@
 import * as THREE from "three"
 import { PerspectiveCamera, View } from "@react-three/drei";
+import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 import Lights from "../lights";
 import { Suspense } from "react";
 import IPhone from "../iphone"; 
@@ -8,7 +9,7 @@ import IPhone from "../iphone";
   index: number;
   groupRef: React.RefObject<THREE.Group>;
   gsapType: string;
-  controlRef: React.RefObject<HTMLDivElement | null>;
+  controlRef: React.RefObject<typeof OrbitControls | null>;
   setRotationState: React.Dispatch<React.SetStateAction<number>>;
   item: {
       title: string;
@@ -34,7 +35,7 @@ const ModelView = ({
       // data-size={size}
       // ref={controlRef}
       // style={{ color: item.color[0] }}
-      className={`border border-red-500 w-full h-full ${index === 2} ? 'right-[-100%] : ''`}
+      className={` w-full h-full ${index === 2} ? 'right-[-100%] : ''`}
     >
       {/* Ambient Light */}
       <ambientLight intensity={0.3}/>
@@ -42,8 +43,26 @@ const ModelView = ({
       {/* Camera */}
       <PerspectiveCamera makeDefault position={[0 , 0, 4]}/>
 <Lights/>
-<Suspense fallback={<div>Loading</div>}/>
-<IPhone/>
+<OrbitControls 
+makeDefault
+ref={controlRef}
+enableZoom={false}
+enablePen={false}
+rotateSpeed={0.4}
+target ={new THREE.Vector3(0,0,0)}
+onEnd={() => {
+  if (controlRef.current) {
+    setRotationState((controlRef.current as unknown as THREE.OrbitControls).getAzimuthalAngle());
+  }
+}}
+/>
+<group ref={groupRef} position={[0, 0, 0]} name={`${index === 1} ? 'small' : 'large' `}>
+  {/* <meshStandardMaterial color={item.color[0]} /> */}
+  <Suspense fallback={<html> <div>Loading</div> </html>}>
+    <IPhone 
+    scale={index === 1 ? [15, 15 , 15] : [17, 17, 17]}/>
+  </Suspense>
+</group>
     </View>
   );
 };
