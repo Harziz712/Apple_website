@@ -2,6 +2,7 @@ import * as THREE from "three"
 import { PerspectiveCamera, View } from "@react-three/drei";
 import Lights from "../lights";
 import { Suspense } from "react";
+import IPhone from "../iphone"; 
 
  type ModelViewProps = {
   index: number;
@@ -41,8 +42,8 @@ const ModelView = ({
       {/* Camera */}
       <PerspectiveCamera makeDefault position={[0 , 0, 4]}/>
 <Lights/>
-
 <Suspense fallback={<div>Loading</div>}/>
+<IPhone/>
     </View>
   );
 };
