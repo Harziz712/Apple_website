@@ -1,22 +1,23 @@
 import * as THREE from "three"
-import { PerspectiveCamera, View } from "@react-three/drei";
-import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
+import { OrbitControls, PerspectiveCamera, View } from "@react-three/drei";
+import { OrbitControls as ThreeOrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 import Lights from "../lights";
 import { Suspense } from "react";
 import IPhone from "../iphone"; 
 
- type ModelViewProps = {
+ export type ModelViewProps = {
   index: number;
   groupRef: React.RefObject<THREE.Group>;
   gsapType: string;
-  controlRef: React.RefObject<typeof OrbitControls | null>;
+  controlRef: React.RefObject<ThreeOrbitControls>;
   setRotationState: React.Dispatch<React.SetStateAction<number>>;
   item: {
       title: string;
-      color: string[];
+      color: ["#8F8A81", "#FFE7B9", "#6F6C64", "#C7C2B5"];
       img: string;
   };
   size: string;
+  scale: [number, number, number];
 };
 
 const ModelView = ({
@@ -47,12 +48,12 @@ const ModelView = ({
 makeDefault
 ref={controlRef}
 enableZoom={false}
-enablePen={false}
+enablePan={false}
 rotateSpeed={0.4}
 target ={new THREE.Vector3(0,0,0)}
 onEnd={() => {
   if (controlRef.current) {
-    setRotationState((controlRef.current as unknown as THREE.OrbitControls).getAzimuthalAngle());
+    setRotationState((controlRef.current as typeof OrbitControls.prototype).getAzimuthalAngle());
   }
 }}
 />
@@ -60,7 +61,10 @@ onEnd={() => {
   {/* <meshStandardMaterial color={item.color[0]} /> */}
   <Suspense fallback={<html> <div>Loading</div> </html>}>
     <IPhone 
-    scale={index === 1 ? [15, 15 , 15] : [17, 17, 17]}/>
+    scale={index === 1 ? [15, 15 , 15] : [17, 17, 17]}
+    item={item}
+    size={size}
+    />
   </Suspense>
 </group>
     </View>

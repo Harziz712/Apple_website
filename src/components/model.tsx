@@ -12,7 +12,11 @@ import { models, sizes } from "../constants"
 
 const Model = () => {
     const [size, setSize] = useState<string>('small');
-    const[model, setModel] = useState({
+    const[model, setModel] = useState<{
+        title: string;
+        color: string[];
+        img: string;
+    }>({
         title:'iphone 15 Pro in Natural Titanium',
         color:["#8F8A81", "#FFE7B9", "#6F6C64", "#C7C2B5"],
         img: yellowImg,
@@ -20,7 +24,7 @@ const Model = () => {
 
     // Camera control for the model view
     const cameraControlSmall = useRef<HTMLDivElement>(null);
-    const cameraControlLarge = useRef<HTMLDivElement>(null);    
+    const cameraControlLarge = useRef<THREE.OrbitControls>(null);    
 
     // Model references for the model view
     const small = useRef<THREE.Group>(new THREE.Group());
