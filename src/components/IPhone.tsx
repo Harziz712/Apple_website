@@ -9,7 +9,6 @@ Title: Apple iPhone 15 Pro Max Black
 import  {useEffect } from 'react'
 import { useGLTF, useTexture } from '@react-three/drei'
 import * as THREE from 'three'
-import { ModelViewProps } from './ui/modelview';
 
 interface IPhoneProps {
   item: {
@@ -20,7 +19,7 @@ interface IPhoneProps {
   size: string;
   scale: [number, number, number];
 }
-function IPhone(props: IPhoneProps & ModelViewProps) {
+function IPhone(props: IPhoneProps ) {
   // Load the GLTF model and texture
   const { nodes, materials } = useGLTF('/models/scene.glb') as { nodes: any; materials: Record<string, THREE.Material> };
 

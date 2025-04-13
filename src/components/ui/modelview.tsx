@@ -20,7 +20,7 @@ import Loader from "../loader";
       img: string;
   };
   size: string;
-  scale: [number, number, number];
+  scale?: [number, number, number];
 };
 
 const ModelView = ({
@@ -37,7 +37,7 @@ const ModelView = ({
     <View
       index={index}
       id={gsapType}
-      className={`w-full h-full ${index === 2 ? 'right-[-100%]' : ''}`}
+      className={`w-full h-full absolute ${index === 2 ? 'right-[-100%]' : ''}`}
 
     >
       {/* Ambient Light */}
@@ -59,11 +59,11 @@ onEnd={() => {
   }  
 }}
 />
-<group ref={groupRef} position={[0, 0, 0]} name={index === 1 ? "small" : "large"}>
+<group ref={groupRef} position={[0, 0, 0]} name={index === 1 ?'small': 'large'}>
   <meshStandardMaterial color={item.color[0]} />
   <Suspense fallback={<Loader />}>
     <IPhone 
-    scale={index === 1 ? [15, 15 , 15] : [17, 17, 17]}
+    scale={index === 1 ? [14, 14 , 14] : [17, 17, 17]}
     item={item}
     size={size}
     />
