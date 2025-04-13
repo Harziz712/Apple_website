@@ -4,7 +4,8 @@ import { Button } from "./button"
 import { pauseImg, playImg, replayImg } from "../../utils"
 import { useGSAP } from "@gsap/react"
 import gsap from"gsap";
-
+import { ScrollTrigger } from "gsap/ScrollTrigger"; // <== Import plugin
+gsap.registerPlugin(ScrollTrigger);
 
 const VideoCarousel = () => {
     const videoRef = useRef<HTMLVideoElement[]>([])
