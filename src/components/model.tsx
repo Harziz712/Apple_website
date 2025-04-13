@@ -1,12 +1,16 @@
 import gsap from "gsap"
 import { useGSAP } from "@gsap/react"
 import ModelView from "./ui/modelview"
-import { useRef, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import * as THREE from "three"
 import { yellowImg } from "../utils"
 import { Canvas} from "@react-three/fiber"
 import { View} from "@react-three/drei"
 import { models, sizes } from "../constants"
+import ErrorBoundary from "./ui/ErrorBoundary"
+import { OrbitControls as OrbitControlsImpl } from 'three-stdlib';
+import { animateWithGsapTimeline } from "../utils/animations"
+
 
 
 
@@ -14,7 +18,7 @@ const Model = () => {
     const [size, setSize] = useState<string>('small');
     const[model, setModel] = useState<{
         title: string;
-        color: string[];
+        color: string[]
         img: string;
     }>({
         title:'iphone 15 Pro in Natural Titanium',
@@ -23,8 +27,10 @@ const Model = () => {
     })
 
     // Camera control for the model view
-    const cameraControlSmall = useRef<HTMLDivElement>(null);
-    const cameraControlLarge = useRef<THREE.OrbitControls>(null);    
+    const cameraControlSmall = useRef<OrbitControlsImpl | null>(null);
+    const cameraControlLarge = useRef<OrbitControlsImpl | null>(null);
+    
+    
 
     // Model references for the model view
     const small = useRef<THREE.Group>(new THREE.Group());
@@ -33,6 +39,24 @@ const Model = () => {
     // rotation state for the model view
     const [smallRotation, setSmallRotation] = useState(0)
     const [largeRotation, setLargeRotation] = useState(0)
+
+const tl = gsap.timeline();
+
+useEffect(()=> {
+    if (size === "large"){
+        animateWithGsapTimeline(tl, small, smallRotation, '#view1', '#view2', {
+            transform: 'translateX(-100%)',
+            duration:2
+        })
+    }
+    if (size === "small"){
+        animateWithGsapTimeline(tl, large, largeRotation, '#view2', '#view1', {
+            transform: 'translateX(0)',
+            duration:2
+        })
+    }
+},[])
+
 
     useGSAP(()=> {
         gsap.to("#heading", {
@@ -67,6 +91,7 @@ const Model = () => {
                     size={size}
 
                     />
+                    <ErrorBoundary>
                     <Canvas
                     className="w-full h-full"
                     style={{
@@ -81,7 +106,9 @@ const Model = () => {
                         
                         eventSource={document.getElementById("root") || undefined}>
                         <View.Port/>
+                        
                     </Canvas>
+                    </ErrorBoundary>
                 </div>
                 <div className="mx-auto w-full"><p className="text-sm font-light text-center mb-5" >{model.title}</p>
                 <div className="flex-center"><ul className="color-container">

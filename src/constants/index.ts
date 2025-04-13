@@ -46,32 +46,60 @@ import {
     },
   ];
   
+  // export const models = [
+  //   {
+  //     id: 1,
+  //     title: "iPhone 15 Pro in Natural Titanium",
+  //     color: ["#8F8A81", "#ffe7b9", "#6f6c64"],
+  //     img: yellowImg,
+  //   },
+  //   {
+  //     id: 2,
+  //     title: "iPhone 15 Pro in Blue Titanium",
+  //     color: ["#53596E", "#6395ff", "#21242e"],
+  //     img: blueImg,
+  //   },
+  //   {
+  //     id: 3,
+  //     title: "iPhone 15 Pro in White Titanium",
+  //     color: ["#C9C8C2", "#ffffff", "#C9C8C2"],
+  //     img: whiteImg,
+  //   },
+  //   {
+  //     id: 4,
+  //     title: "iPhone 15 Pro in Black Titanium",
+  //     color: ["#454749", "#3b3b3b", "#181819"],
+  //     img: blackImg,
+  //   },
+  // ];
+
   export const models = [
     {
       id: 1,
       title: "iPhone 15 Pro in Natural Titanium",
-      color: ["#8F8A81", "#ffe7b9", "#6f6c64"],
+      color: ["#8F8A81", "#FFE7B9", "#6F6C64", "#C7C2B5"],
       img: yellowImg,
     },
     {
       id: 2,
       title: "iPhone 15 Pro in Blue Titanium",
-      color: ["#53596E", "#6395ff", "#21242e"],
+      color: ["#53596E", "#6395FF", "#21242E", "#A0A0A0"],
       img: blueImg,
     },
     {
       id: 3,
       title: "iPhone 15 Pro in White Titanium",
-      color: ["#C9C8C2", "#ffffff", "#C9C8C2"],
+      color: ["#C9C8C2", "#FFFFFF", "#C9C8C2", "#E0E0E0"],
       img: whiteImg,
     },
     {
       id: 4,
       title: "iPhone 15 Pro in Black Titanium",
-      color: ["#454749", "#3b3b3b", "#181819"],
+      color: ["#454749", "#3B3B3B", "#181819", "#2A2A2A"],
       img: blackImg,
     },
   ];
+  
   
   export const sizes = [
     { label: '6.1"', value: "small" },

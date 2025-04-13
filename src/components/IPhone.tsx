@@ -11,15 +11,18 @@ import { useGLTF, useTexture } from '@react-three/drei'
 import * as THREE from 'three'
 import { ModelViewProps } from './ui/modelview';
 
-// interface IPhoneProps extends React.ComponentProps<'group'> {
-//   item: {
-//     color:["#8F8A81", "#FFE7B9", "#6F6C64", "#C7C2B5"],
-//     img: string;
-//   };
-// }
-
-function IPhone(props: ModelViewProps) {
-  const { nodes, materials } = useGLTF('/models/scene.glb');
+interface IPhoneProps {
+  item: {
+    title: string;
+    color: string[];
+    img: string;
+  };
+  size: string;
+  scale: [number, number, number];
+}
+function IPhone(props: IPhoneProps & ModelViewProps) {
+  // Load the GLTF model and texture
+  const { nodes, materials } = useGLTF('/models/scene.glb') as { nodes: any; materials: Record<string, THREE.Material> };
 
   const texture = useTexture(props.item.img)  
   useEffect(() => {
@@ -36,6 +39,13 @@ function IPhone(props: ModelViewProps) {
           material[1].color = new THREE.Color(props.item.color[0]);
         }
       }
+      // if (material[1] instanceof THREE.MeshStandardMaterial || material[1] instanceof THREE.MeshBasicMaterial) {
+      //   material[1].map = texture;
+      // }
+      if (material[0] === "PaletteMaterial001" && material[1] instanceof THREE.MeshStandardMaterial) {
+        material[1].map = texture;
+      }
+      // material = texture;
       material[1].needsUpdate = true;
     });
   }, [materials, props.item]);
@@ -152,7 +162,9 @@ function IPhone(props: ModelViewProps) {
         geometry={(nodes.xXDHkMplTIDAXLN as THREE.Mesh).geometry}
         material={materials.pIJKfZsazmcpEiU}
         scale={0.01}
-      />
+      >
+      <meshStandardMaterial roughness={1} map={texture}/>
+      </mesh>
       <mesh
         castShadow
         receiveShadow

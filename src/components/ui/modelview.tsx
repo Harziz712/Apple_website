@@ -1,19 +1,22 @@
 import * as THREE from "three"
 import { OrbitControls, PerspectiveCamera, View } from "@react-three/drei";
-import { OrbitControls as ThreeOrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 import Lights from "../lights";
-import { Suspense } from "react";
-import IPhone from "../iphone"; 
+import { Suspense} from "react";
+import IPhone from "../IPhone";
+import React from "react";
+import { OrbitControls as OrbitControlsImpl } from 'three-stdlib';
+import Loader from "../loader";
+
 
  export type ModelViewProps = {
   index: number;
   groupRef: React.RefObject<THREE.Group>;
   gsapType: string;
-  controlRef: React.RefObject<ThreeOrbitControls>;
+  controlRef: React.RefObject<OrbitControlsImpl | null>;
   setRotationState: React.Dispatch<React.SetStateAction<number>>;
   item: {
       title: string;
-      color: ["#8F8A81", "#FFE7B9", "#6F6C64", "#C7C2B5"];
+      color: string[];
       img: string;
   };
   size: string;
@@ -29,14 +32,13 @@ const ModelView = ({
   item,
   size,
 }: ModelViewProps) => {
+
   return (
     <View
       index={index}
       id={gsapType}
-      // data-size={size}
-      // ref={controlRef}
-      // style={{ color: item.color[0] }}
-      className={` w-full h-full ${index === 2} ? 'right-[-100%] : ''`}
+      className={`w-full h-full ${index === 2 ? 'right-[-100%]' : ''}`}
+
     >
       {/* Ambient Light */}
       <ambientLight intensity={0.3}/>
@@ -53,13 +55,13 @@ rotateSpeed={0.4}
 target ={new THREE.Vector3(0,0,0)}
 onEnd={() => {
   if (controlRef.current) {
-    setRotationState((controlRef.current as typeof OrbitControls.prototype).getAzimuthalAngle());
-  }
+    setRotationState(controlRef.current.getAzimuthalAngle());
+  }  
 }}
 />
-<group ref={groupRef} position={[0, 0, 0]} name={`${index === 1} ? 'small' : 'large' `}>
-  {/* <meshStandardMaterial color={item.color[0]} /> */}
-  <Suspense fallback={<html> <div>Loading</div> </html>}>
+<group ref={groupRef} position={[0, 0, 0]} name={index === 1 ? "small" : "large"}>
+  <meshStandardMaterial color={item.color[0]} />
+  <Suspense fallback={<Loader />}>
     <IPhone 
     scale={index === 1 ? [15, 15 , 15] : [17, 17, 17]}
     item={item}
