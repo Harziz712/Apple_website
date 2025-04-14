@@ -58,7 +58,7 @@ const VideoCarousel = () => {
 
     },[startPlay, videoId,isPlaying, loadedData])
 
-    const handleLoadedMetaData  = (i: number, e: HTMLVideoElement) => setLoadedData((pre) => [...pre, e])
+    const handleLoadedMetaData  = (_i: number, e: HTMLVideoElement) => setLoadedData((pre) => [...pre, e])
 
     // useEffect (()=>{
     //     let currentProgress = 0;
@@ -249,7 +249,7 @@ onLoadedMetadata={(e) => handleLoadedMetaData(i, e.currentTarget)}
     </video>
 </div>
 <div className="absolute top-20 left-[5%] z-10">
-    {list.textLists.map((text, i) => (
+    {list.textLists.map((text, _i) => (
         <p key={text} className="md:text-2xl text-xl font-medium">
             {text}
         </p>
