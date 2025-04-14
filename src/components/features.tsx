@@ -1,4 +1,5 @@
 import { useGSAP } from '@gsap/react'
+import gsap from 'gsap'
 import { animateWithGsap } from '../utils/animations'
 import { explore1Img, explore2Img, exploreVideo } from '../utils'
 import { useRef } from 'react'
@@ -8,9 +9,25 @@ const Features = () => {
         const videoRef = useRef<HTMLVideoElement | null>(null)
     
     useGSAP(()=>{
+        gsap.to( '#exploreVideo', {
+            scrollTrigger: {
+                trigger: '#exploreVideo',
+                toggleActions: 'play pause reverse restart',
+                start: ' -10% bottom',
+            },
+            onComplete: () => {
+                if (videoRef.current) {
+                    videoRef.current.play() 
+                }
+            }
+        })
         animateWithGsap('#features_title', {
 
-           y: 0, opacity: 1,}, { trigger: '#features_title' })
+            y: 0, opacity: 1,}, { trigger: '#features_title' }) 
+        animateWithGsap('.g_grow', {
+
+        scale: 1, opacity: 1, ease:'power1',}, { scrub: 5.5},)
+        animateWithGsap('.g_text', {y:0, opacity:1, ease: 'power1', duration:1}, { trigger: '.g_text' })
 
     },[])
   return (
@@ -39,6 +56,25 @@ const Features = () => {
                             </div>        
                             <div className="overflow-hidden flex-1 h-[50vh]">
                                 <img src={explore2Img} alt="titanium 2" className='feature-video g_grow' />
+                            </div>
+                        </div>
+                        <div className="feature-text-co">
+                            <div className="flex-1 flex-center">
+                                <p className="feature-text g_text">
+                                    iphone 15 Pro is {' '} 
+                                    <span className='text-white'>
+                                        the first iphone to feature an aerospace-grade titanium,
+                                </span> {' '}
+                                using the same alloy that spacecraft use for missions to Mars.
+                                </p>
+                            </div>
+                            <div className="flex-1 flex-center">
+                                <p className="feature-text g_text">
+                                   Titanium has one of the best strength-to-weight ratios of any metal, amking these our {' '} 
+                                    <span className='text-white'>
+                                    Lightest Pro models ever.                               
+                                </span> {' '}
+                                You'll notice the diffrence the moment you pick one up.                                </p>
                             </div>
                         </div>
                     </div>
