@@ -58,7 +58,7 @@ const Features = () => {
                                 <img src={explore2Img} alt="titanium 2" className='feature-video g_grow' />
                             </div>
                         </div>
-                        <div className="feature-text-co">
+                        <div className="feature-text-container">
                             <div className="flex-1 flex-center">
                                 <p className="feature-text g_text">
                                     iphone 15 Pro is {' '} 
@@ -76,6 +76,7 @@ const Features = () => {
                                 </span> {' '}
                                 You'll notice the diffrence the moment you pick one up.                                </p>
                             </div>
+                           
                         </div>
                     </div>
 
