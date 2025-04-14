@@ -255,8 +255,7 @@ onLoadedMetadata={(e) => handleLoadedMetaData(i, e.currentTarget)}
         </p>
     ))}
 </div>
-
-                </div>
+              </div>
             </div>
        ) )}
     </div>

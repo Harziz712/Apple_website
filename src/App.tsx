@@ -2,8 +2,10 @@ import Hero from "./components/hero"
 import Highlights from "./components/highlights"
 import Navbar from "./components/navbar"
 import Model from "./components/model"
+import * as Sentry from '@sentry/react'
 
 const App = () => {
+  return <button onClick={() => {throw new Error("This is your first error!");}}>Break the world</button>;
   return (
     <main>
       <Navbar />
@@ -15,4 +17,4 @@ const App = () => {
   )
 }
 
-export default App
+export default Sentry.withProfiler(App);

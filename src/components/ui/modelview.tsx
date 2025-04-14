@@ -63,7 +63,7 @@ onEnd={() => {
   <meshStandardMaterial color={item.color[0]} />
   <Suspense fallback={<Loader />}>
     <IPhone 
-    scale={index === 1 ? [14, 14 , 14] : [17, 17, 17]}
+    scale={index === 1 ? [15, 15 , 15] : [17, 17, 17]}
     item={item}
     size={size}
     />
