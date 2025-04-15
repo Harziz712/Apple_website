@@ -2,8 +2,8 @@ import { footerLinks } from "../constants"
 
     
 const Footer = () => {
-  return (
-    <footer className="py-5 sm:px-10 px-5">
+  return ( 
+    <footer className="py-5 sm:px-10 px-5  screen-max-width">
         <div className="screen-max-width">
             <p className="font-semibold text gray text-xs">More ways to shop: {' '}
                 <span className="underline text-blue-600">
