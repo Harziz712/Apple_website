@@ -1,11 +1,13 @@
 import { useGSAP } from "@gsap/react"
-import { chipImg } from "../utils"
+import { chipImg, frameImg, frameVideo } from "../utils"
 import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
+import { useRef } from "react";
 
 gsap.registerPlugin(ScrollTrigger);
 
 const HowItWorks = () => {
+    const videoRef = useRef<HTMLVideoElement>(null);
     useGSAP(() => {
         gsap.from("#chip", {
             scrollTrigger: {
@@ -30,6 +32,23 @@ const HowItWorks = () => {
                         A17 Pro chip A monster win for gaming.
                     </h2>
                     <p className="hiw-subtitle">It's here. The biggest redesign in the history of Apple GPUs.</p>
+                </div>
+                <div className="mt-10 md:mt-20 mb-14">
+                    <div className="relative h-full flex-center">
+                        <div className="overflow-hidden">
+                            <img src={frameImg} alt="frame" className="bg-transparent relative z-10" />
+                        </div>
+                        <div className="hiw-video">
+                                <video className="pointer-events-none" autoPlay loop muted playsInline preload="auto" ref={videoRef}>
+                                    <source  src={frameVideo} type="video/mp4"/>
+                                </video>
+                            </div>  
+                    </div>
+
+                    <p className="text-gray font-semibold text-center mt-3"> 
+                        Honkai: Star Rail
+                    </p>
+
                 </div>
             </div>
         </section>
